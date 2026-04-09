@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wippie en Snippie Kleuterskool | Hermanus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Quicksand:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#f9f6f8',
+                        secondary: '#e7000b',
+                        accent: '#ffcc00', // A friendly yellow for kids
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        rounded: ['Quicksand', 'sans-serif'],
+                        adlam: ['"ADLaM Display"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .hero-bg {
+            background-image: linear-gradient(rgba(249, 246, 248, 0.8), rgba(249, 246, 248, 0.8)), url('https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+        }
+        .nav-link:hover { color: #e7000b; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        @keyframes float-delayed {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(-10deg); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: float-delayed 7s ease-in-out infinite 2s; }
+        .animate-float-slow { animation: float 8s ease-in-out infinite 1s; }
+    </style>
+    <script src="pjax.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body class="bg-primary font-sans text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="fixed w-full z-50 bg-[#dde4e8] backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <img src="logo.png" alt="Wippie en Snippie Logo" class="h-14 w-auto" referrerPolicy="no-referrer">
+                    <div class="flex flex-col items-center">
+                        <span class="font-adlam text-2xl text-secondary leading-tight">Wippie en Snippie</span>
+                        <span class="text-[10px] font-bold text-gray-400 tracking-widest uppercase leading-none">KLEUTERSKOOL &bull; PRESCHOOL</span>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium">
+                <a href="index.html" class="nav-link transition-colors" data-i18n="nav_home">Tuis</a>
+                
+                <!-- Dropdown -->
+                <div class="relative group">
+                    <button class="nav-link transition-colors flex items-center space-x-1 py-4">
+                        <span data-i18n="nav_about">Oor Ons</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                    <div class="absolute left-0 top-full w-64 bg-white shadow-xl rounded-2xl border border-gray-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
+                        <a href="oor-ons.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_about">Oor Ons</a>
+                        <a href="personeel.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_staff">Personeel</a>
+                        <a href="klasse.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_classes">Klasse</a>
+                        <a href="buitemuurs.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_extra">Buitemuurse Aktiwiteite</a>
+                        <a href="gebeure.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_events">Komende Gebeure</a>
+                        <a href="skoolgelde.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_fees">Skoolgelde</a>
+                    </div>
+                </div>
+
+                <a href="wenke.html" class="nav-link transition-colors" data-i18n="nav_tips">Wenke</a>
+                <a href="bedankinge.html" class="nav-link transition-colors" data-i18n="nav_thanks">Bedankinge</a>
+                <a href="kontak.html" class="nav-link transition-colors" data-i18n="nav_contact">Kontak Ons</a>
+                
+                <!-- Language Switcher -->
+                <div class="flex items-center space-x-2">
+                    <button id="mute-btn" onclick="toggleMute()" class="flex items-center space-x-1 bg-secondary hover:opacity-90 px-3 py-1.5 rounded-full transition-colors text-sm font-bold text-white" title="Toggle Music">
+                        <i data-lucide="volume-2" id="mute-icon" class="w-4 h-4"></i>
+                        <i data-lucide="volume-x" id="mute-icon-muted" class="w-4 h-4 hidden"></i>
+                    </button>
+                    <button onclick="toggleLanguage()" class="flex items-center space-x-1.5 bg-[#eef2f6] hover:bg-[#e2e8f0] px-4 py-2 rounded-full transition-colors text-sm font-semibold text-[#334155]">
+                        <i data-lucide="globe" class="w-4 h-4"></i>
+                        <span id="lang-text">English</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center space-x-2">
+                <button id="mute-btn-mobile" onclick="toggleMute()" class="flex items-center space-x-1 bg-secondary px-3 py-1.5 rounded-full text-sm font-bold text-white">
+                    <i data-lucide="volume-2" id="mute-icon-mobile" class="w-4 h-4"></i>
+                    <i data-lucide="volume-x" id="mute-icon-mobile-muted" class="w-4 h-4 hidden"></i>
+                </button>
+                <button onclick="toggleLanguage()" class="flex items-center space-x-1.5 bg-[#eef2f6] px-4 py-2 rounded-full text-sm font-semibold text-[#334155]">
+                    <i data-lucide="globe" class="w-4 h-4"></i>
+                    <span id="lang-text-mobile">English</span>
+                </button>
+                <button class="text-gray-600" onclick="toggleMenu()">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-4 shadow-lg">
+            <a href="index.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_home">Tuis</a>
+            <div class="space-y-2">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-wider px-2" data-i18n="nav_about">Oor Ons</p>
+                <a href="oor-ons.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_about">Oor Ons</a>
+                <a href="personeel.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_staff">Personeel</a>
+                <a href="klasse.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_classes">Klasse</a>
+                <a href="buitemuurs.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_extra">Buitemuurse Aktiwiteite</a>
+                <a href="gebeure.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_events">Komende Gebeure</a>
+                <a href="skoolgelde.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_fees">Skoolgelde</a>
+            </div>
+            <a href="wenke.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_tips">Wenke</a>
+            <a href="bedankinge.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_thanks">Bedankinge</a>
+            <a href="kontak.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_contact">Kontak Ons</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="tuis" class="hero-bg min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl">
+                <h1 class="font-rounded font-bold text-5xl md:text-7xl text-gray-900 mb-6 leading-tight" data-i18n="hero_title">
+                    'n Veilige Hawe vir <span class="text-secondary">Klein Voetjies</span> om te Groei.
+                </h1>
+                <p class="text-xl text-gray-600 mb-10 leading-relaxed" data-i18n="hero_subtitle">
+                    By Wippie en Snippie Kleuterskool bied ons 'n liefdevolle en stimulerende omgewing waar u kind se ontwikkeling ons eerste prioriteit is.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="https://drive.google.com/file/d/1r5CzcU_QhVRUcHqZufTS3n8Ee2wTJGmg/view?usp=sharing" target="_blank" class="bg-secondary text-white px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center hover:bg-red-700 transition-colors shadow-lg shadow-red-200">
+                        <span data-i18n="cta_call">Skryf Nou In</span>
+                    </a>
+                    <a href="oor-ons.html" class="bg-white text-gray-900 border-2 border-gray-100 px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center hover:bg-gray-50 transition-colors">
+                        <span data-i18n="cta_learn">Vind Meer Uit</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services / Features Section -->
+    <section class="py-24 bg-[#dde4e8] relative overflow-hidden">
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-10 left-10 text-accent opacity-50 animate-float z-20 pointer-events-none">
+            <i data-lucide="star" class="w-12 h-12"></i>
+        </div>
+        <div class="absolute bottom-20 left-10 md:left-20 text-blue-400 opacity-40 animate-float-delayed z-20 pointer-events-none">
+            <i data-lucide="cloud" class="w-16 h-16"></i>
+        </div>
+        <div class="absolute top-20 right-10 md:right-20 text-green-400 opacity-40 animate-float-slow z-20 pointer-events-none">
+            <i data-lucide="sun" class="w-14 h-14"></i>
+        </div>
+        <div class="absolute bottom-10 right-10 text-secondary opacity-30 animate-float z-20 pointer-events-none">
+            <i data-lucide="music" class="w-10 h-10"></i>
+        </div>
+        <div class="absolute top-1/3 left-4 md:left-1/4 text-purple-400 opacity-40 animate-float-slow z-20 pointer-events-none">
+            <i data-lucide="rocket" class="w-10 h-10"></i>
+        </div>
+        <div class="absolute bottom-1/3 right-4 md:right-1/4 text-orange-400 opacity-40 animate-float-delayed z-20 pointer-events-none">
+            <i data-lucide="palette" class="w-12 h-12"></i>
+        </div>
+        <div class="absolute top-10 right-1/3 text-yellow-500 opacity-50 animate-float z-20 pointer-events-none">
+            <i data-lucide="sparkles" class="w-10 h-10"></i>
+        </div>
+        <div class="absolute bottom-1/4 left-1/3 text-pink-400 opacity-40 animate-float-slow z-20 pointer-events-none">
+            <i data-lucide="smile" class="w-14 h-14"></i>
+        </div>
+        <div class="absolute top-1/4 left-1/2 text-red-400 opacity-30 animate-float-delayed z-20 pointer-events-none">
+            <i data-lucide="heart" class="w-12 h-12"></i>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="font-rounded font-bold text-4xl text-gray-900 mb-4" data-i18n="services_title">Ons Dienste</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="services_subtitle">Ons fokus op die holistiese ontwikkeling van elke kind deur speel, leer en sorg.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="p-6 md:p-8 rounded-3xl bg-primary border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-accent">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-secondary mb-6 group-hover:bg-secondary group-hover:text-white group-hover:animate-bounce transition-colors">
+                        <i data-lucide="baby"></i>
+                    </div>
+                    <h3 class="font-rounded font-bold text-2xl mb-4" data-i18n="service1_title">Dagsorgprogram</h3>
+                    <p class="text-gray-600" data-i18n="service1_desc">Die opvoedkundige program wat vir die oggend gevolg word, is gebaseer op die Nasionale Kurikulum wat tans in skole gebruik word. Taal en wiskundige ontwikkeling, perseptuele vaardighede asook groot en fynmotoriese ontwikkeling geniet ook aandag in die dagprogram. Ons volg ‘n geselekteerde tema elke week wat voorsiening maak vir speletjies en aktiwiteite wat verband hou met temas.</p>
+                </div>
+                <div class="p-6 md:p-8 rounded-3xl bg-primary border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-accent">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-secondary mb-6 group-hover:bg-secondary group-hover:text-white group-hover:animate-bounce transition-colors">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <h3 class="font-rounded font-bold text-2xl mb-4" data-i18n="service2_title">Veilige Omgewing</h3>
+                    <p class="text-gray-600" data-i18n="service2_desc">'n Veilige en higiëniese perseel waar kinders met gemoedsrus kan speel en verken.</p>
+                </div>
+                <div class="p-6 md:p-8 rounded-3xl bg-primary border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-accent">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-secondary mb-6 group-hover:bg-secondary group-hover:text-white group-hover:animate-bounce transition-colors">
+                        <i data-lucide="clock"></i>
+                    </div>
+                    <h3 class="font-rounded font-bold text-2xl mb-4" data-i18n="service3_title">Gerieflike Ure</h3>
+                    <p class="text-gray-600" data-i18n="service3_desc">Ons is oop gedurende Maandag tot Vrydag vanaf 06:30 tot 17:30 om werkende ouers te akkommodeer.</p>
+                </div>
+                <div class="p-6 md:p-8 rounded-3xl bg-primary border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-accent">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-secondary mb-6 group-hover:bg-secondary group-hover:text-white group-hover:animate-bounce transition-colors">
+                        <i data-lucide="heart"></i>
+                    </div>
+                    <h3 class="font-rounded font-bold text-2xl mb-4" data-i18n="service4_title">Liefdevolle Sorg</h3>
+                    <p class="text-gray-600" data-i18n="service4_desc">Ons bied 'n liefdevolle omgewing waar elke kind spesiaal voel en kan floreer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#dde4e8] py-12 border-t border-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-6 md:mb-0">
+                    <img src="logo.png" alt="Wippie en Snippie Logo" class="h-8 w-auto" referrerPolicy="no-referrer">
+                    <span class="font-adlam text-xl text-secondary">Wippie en Snippie</span>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    &copy; 2026 Wippie en Snippie Kleuterskool. <span data-i18n="footer_rights">Alle regte voorbehou.</span>
+                </div>
+                <div class="flex space-x-6 mt-6 md:mt-0">
+                    <a href="https://www.facebook.com/WippieEnSnippieHermanus" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-secondary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook w-6 h-6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-secondary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram w-6 h-6"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <audio id="theme-song" loop>
+        <source src="theme.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        window.pageTranslations = {
+            af: {
+                nav_home: "Tuis",
+                nav_about: "Oor Ons",
+                nav_staff: "Personeel",
+                nav_classes: "Klasse",
+                nav_extra: "Buitemuurse Aktiwiteite",
+                nav_events: "Komende Gebeure",
+                nav_fees: "Skoolgelde",
+                nav_tips: "Wenke",
+                nav_thanks: "Bedankinge",
+                nav_contact: "Kontak Ons",
+                hero_location: "Sandbaai, Hermanus",
+                hero_title: "'n Veilige Hawe vir <span class=\"text-secondary\">Klein Voetjies</span> om te Groei.",
+                hero_subtitle: "By Wippie en Snippie Kleuterskool bied ons 'n liefdevolle en stimulerende omgewing waar u kind se ontwikkeling ons eerste prioriteit is.",
+                cta_call: "Skryf Nou In",
+                cta_learn: "Vind Meer Uit",
+                services_title: "Ons Dienste",
+                services_subtitle: "Ons fokus op die holistiese ontwikkeling van elke kind deur speel, leer en sorg.",
+                service1_title: "Dagsorgprogram",
+                service1_desc: "Die opvoedkundige program wat vir die oggend gevolg word, is gebaseer op die Nasionale Kurikulum wat tans in skole gebruik word. Taal en wiskundige ontwikkeling, perseptuele vaardighede asook groot en fynmotoriese ontwikkeling geniet ook aandag in die dagprogram. Ons volg ‘n geselekteerde tema elke week wat voorsiening maak vir speletjies en aktiwiteite wat verband hou met temas.",
+                service2_title: "Veilige Omgewing",
+                service2_desc: "'n Veilige en higiëniese perseel waar kinders met gemoedsrus kan speel en verken.",
+                service3_title: "Gerieflike Ure",
+                service3_desc: "Ons is oop gedurende Maandag tot Vrydag vanaf 06:30 tot 17:30 om werkende ouers te akkommodeer.",
+                service4_title: "Liefdevolle Sorg",
+                service4_desc: "Ons bied 'n liefdevolle omgewing waar elke kind spesiaal voel en kan floreer.",
+                about_badge: "Trots Plaaslik",
+                about_title: "Oor Wippie en Snippie",
+                about_p1: "Wippie en Snippie Kleuterskool is 'n gevestigde instansie in Sandbaai, Hermanus. Ons glo dat elke kind uniek is en die beste moontlike begin in die lewe verdien.",
+                about_p2: "Ons span van toegewyde personeel streef daarna om 'n atmosfeer van liefde, respek en kreatiwiteit te skep waar kinders hul volle potensiaal kan bereik.",
+                about_list1: "Professionele en passievolle personeel",
+                about_list2: "Stimulerende kurrikulum",
+                about_list3: "Groot buitelug speelarea",
+                tips_title: "Wenke vir Ouers",
+                tip1: "Roetine is belangrik vir 'n kind se veiligheidsgevoel.",
+                tip2: "Moedig onafhanklikheid aan deur klein take self te laat doen.",
+                tip3: "Lees elke dag saam met u kind om taalontwikkeling te bevorder.",
+                thanks_title: "Ons Bedankinge",
+                thanks_desc: "Ons wil graag ons opregte dank uitspreek aan al die ouers en die gemeenskap van Hermanus vir hul voortgesette ondersteuning en vertroue in ons skool. Julle maak dit moontlik vir ons om 'n verskil te maak in die lewens van ons kleuters.",
+                thanks_quote: "\"Die toekoms van die wêreld is vandag in ons klaskamers.\"",
+                location_title: "Waar Ons Is",
+                location_subtitle: "Besoek ons in Sandbaai, Hermanus.",
+                info_address: "Adres",
+                info_hours: "Ure",
+                info_days: "Maandag - Vrydag",
+                info_contact: "Kontak",
+                contact_title: "Kontak Ons",
+                contact_subtitle: "Het u vrae of wil u 'n draai kom maak? Ons hoor graag van u!",
+                contact_call: "Bel Ons",
+                contact_email: "E-pos Ons",
+                contact_visit: "Besoek Ons",
+                contact_address: "Hoofweg Sandbaai, Hermanus",
+                form_name: "Naam",
+                form_name_placeholder: "U Naam",
+                form_email: "E-pos",
+                form_email_placeholder: "U E-pos",
+                form_message: "Boodskap",
+                form_message_placeholder: "Hoe kan ons help?",
+                form_submit: "Stuur Boodskap",
+                footer_rights: "Alle regte voorbehou.",
+                lang_btn: "English"
+            },
+            en: {
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_staff: "Staff",
+                nav_classes: "Classes",
+                nav_extra: "Extracurricular Activities",
+                nav_events: "Upcoming Events",
+                nav_fees: "School Fees",
+                nav_tips: "Tips",
+                nav_thanks: "Acknowledgements",
+                nav_contact: "Contact Us",
+                hero_location: "Sandbaai, Hermanus",
+                hero_title: "A Safe Haven for <span class=\"text-secondary\">Little Feet</span> to Grow.",
+                hero_subtitle: "At Wippie en Snippie Pre-school we offer a loving and stimulating environment where your child's development is our first priority.",
+                cta_call: "Enroll Now",
+                cta_learn: "Find Out More",
+                services_title: "Our Services",
+                services_subtitle: "We focus on the holistic development of every child through play, learning, and care.",
+                service1_title: "Daycare Program",
+                service1_desc: "The educational program followed for the morning is based on the National Curriculum currently used in schools. Language and mathematical development, perceptual skills as well as gross and fine motor development also receive attention in the daily program. We follow a selected theme every week that provides for games and activities related to themes.",
+                service2_title: "Safe Environment",
+                service2_desc: "A safe and hygienic premises where children can play and explore with peace of mind.",
+                service3_title: "Convenient Hours",
+                service3_desc: "We are open Monday to Friday from 06:30 to 17:30 to accommodate working parents.",
+                service4_title: "Loving Care",
+                service4_desc: "We provide a loving environment where every child feels special and can thrive.",
+                about_badge: "Proudly Local",
+                about_title: "About Wippie en Snippie",
+                about_p1: "Wippie en Snippie Pre-school is an established institution in Sandbaai, Hermanus. We believe that every child is unique and deserves the best possible start in life.",
+                about_p2: "Our team of dedicated staff strives to create an atmosphere of love, respect, and creativity where children can reach their full potential.",
+                about_list1: "Professional and passionate staff",
+                about_list2: "Stimulating curriculum",
+                about_list3: "Large outdoor play area",
+                tips_title: "Tips for Parents",
+                tip1: "Routine is important for a child's sense of security.",
+                tip2: "Encourage independence by letting them do small tasks themselves.",
+                tip3: "Read with your child every day to promote language development.",
+                thanks_title: "Our Acknowledgements",
+                thanks_desc: "We would like to express our sincere thanks to all the parents and the community of Hermanus for their continued support and trust in our school. You make it possible for us to make a difference in the lives of our toddlers.",
+                thanks_quote: "\"The future of the world is in our classrooms today.\"",
+                location_title: "Where We Are",
+                location_subtitle: "Visit us in Sandbaai, Hermanus.",
+                info_address: "Address",
+                info_hours: "Hours",
+                info_days: "Monday - Friday",
+                info_contact: "Contact",
+                contact_title: "Contact Us",
+                contact_subtitle: "Do you have questions or want to stop by? We would love to hear from you!",
+                contact_call: "Call Us",
+                contact_email: "Email Us",
+                contact_visit: "Visit Us",
+                contact_address: "Main Road Sandbaai, Hermanus",
+                form_name: "Name",
+                form_name_placeholder: "Your Name",
+                form_email: "Email",
+                form_email_placeholder: "Your Email",
+                form_message: "Message",
+                form_message_placeholder: "How can we help?",
+                form_submit: "Send Message",
+                footer_rights: "All rights reserved.",
+                lang_btn: "Afrikaans"
+            }
+        };
+    </script>
+</body>
+</html>

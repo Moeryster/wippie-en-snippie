@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skoolgelde | Wippie en Snippie Kleuterskool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Quicksand:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#f9f6f8',
+                        secondary: '#e7000b',
+                        accent: '#ffcc00',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        rounded: ['Quicksand', 'sans-serif'],
+                        adlam: ['"ADLaM Display"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .nav-link:hover { color: #e7000b; }
+    </style>
+    <script src="pjax.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body class="bg-primary font-sans text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="fixed w-full z-50 bg-[#dde4e8] backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <img src="logo.png" alt="Wippie en Snippie Logo" class="h-14 w-auto" referrerPolicy="no-referrer">
+                    <div class="flex flex-col items-center">
+                        <span class="font-adlam text-2xl text-secondary leading-tight">Wippie en Snippie</span>
+                        <span class="text-[10px] font-bold text-gray-400 tracking-widest uppercase leading-none">KLEUTERSKOOL &bull; PRESCHOOL</span>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium">
+                <a href="index.html" class="nav-link transition-colors" data-i18n="nav_home">Tuis</a>
+                
+                <!-- Dropdown -->
+                <div class="relative group">
+                    <button class="nav-link transition-colors flex items-center space-x-1 py-4 text-secondary">
+                        <span data-i18n="nav_about">Oor Ons</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                    <div class="absolute left-0 top-full w-64 bg-white shadow-xl rounded-2xl border border-gray-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
+                        <a href="oor-ons.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_about">Oor Ons</a>
+                        <a href="personeel.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_staff">Personeel</a>
+                        <a href="klasse.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_classes">Klasse</a>
+                        <a href="buitemuurs.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_extra">Buitemuurse Aktiwiteite</a>
+                        <a href="gebeure.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_events">Komende Gebeure</a>
+                        <a href="skoolgelde.html" class="block px-6 py-2 bg-primary text-secondary transition-colors" data-i18n="nav_fees">Skoolgelde</a>
+                    </div>
+                </div>
+
+                <a href="wenke.html" class="nav-link transition-colors" data-i18n="nav_tips">Wenke</a>
+                <a href="bedankinge.html" class="nav-link transition-colors" data-i18n="nav_thanks">Bedankinge</a>
+                <a href="kontak.html" class="nav-link transition-colors" data-i18n="nav_contact">Kontak Ons</a>
+                
+                <div class="flex items-center space-x-2">
+                    <button id="mute-btn" onclick="toggleMute()" class="flex items-center space-x-1 bg-secondary hover:opacity-90 px-3 py-1.5 rounded-full transition-colors text-sm font-bold text-white" title="Toggle Music">
+                        <i data-lucide="volume-2" id="mute-icon" class="w-4 h-4"></i>
+                        <i data-lucide="volume-x" id="mute-icon-muted" class="w-4 h-4 hidden"></i>
+                    </button>
+                    <button onclick="toggleLanguage()" class="flex items-center space-x-1.5 bg-[#eef2f6] hover:bg-[#e2e8f0] px-4 py-2 rounded-full transition-colors text-sm font-semibold text-[#334155]">
+                        <i data-lucide="globe" class="w-4 h-4"></i>
+                        <span id="lang-text">English</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center space-x-2">
+                <button id="mute-btn-mobile" onclick="toggleMute()" class="flex items-center space-x-1 bg-secondary px-3 py-1.5 rounded-full text-sm font-bold text-white">
+                    <i data-lucide="volume-2" id="mute-icon-mobile" class="w-4 h-4"></i>
+                    <i data-lucide="volume-x" id="mute-icon-mobile-muted" class="w-4 h-4 hidden"></i>
+                </button>
+                <button onclick="toggleLanguage()" class="flex items-center space-x-1.5 bg-[#eef2f6] px-4 py-2 rounded-full text-sm font-semibold text-[#334155]">
+                    <i data-lucide="globe" class="w-4 h-4"></i>
+                    <span id="lang-text-mobile">English</span>
+                </button>
+                <button class="text-gray-600" onclick="toggleMenu()">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-4 shadow-lg">
+            <a href="index.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_home">Tuis</a>
+            <div class="space-y-2">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-wider px-2" data-i18n="nav_about">Oor Ons</p>
+                <a href="oor-ons.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_about">Oor Ons</a>
+                <a href="personeel.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_staff">Personeel</a>
+                <a href="klasse.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_classes">Klasse</a>
+                <a href="buitemuurs.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_extra">Buitemuurse Aktiwiteite</a>
+                <a href="gebeure.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_events">Komende Gebeure</a>
+                <a href="skoolgelde.html" class="block font-medium pl-4 text-secondary" onclick="toggleMenu()" data-i18n="nav_fees">Skoolgelde</a>
+            </div>
+            <a href="wenke.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_tips">Wenke</a>
+            <a href="bedankinge.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_thanks">Bedankinge</a>
+            <a href="kontak.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_contact">Kontak Ons</a>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="font-rounded font-bold text-4xl md:text-5xl text-gray-900 mb-4" data-i18n="fees_title">Skoolgelde</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="fees_subtitle">Inligting oor fooie en betalingsopsies.</p>
+        </div>
+    </section>
+
+    <!-- Fees Content -->
+    <section class="py-16 bg-[#dde4e8]">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-[3rem] shadow-xl border border-gray-100 overflow-hidden">
+                    <div class="p-6 md:p-12 bg-gray-50 border-b border-gray-100">
+                        <h2 class="font-rounded font-bold text-3xl mb-8 text-center" data-i18n="fees_info_title">Fooie Inligting</h2>
+                        <div class="max-w-2xl mx-auto space-y-4">
+                            <div class="flex justify-between items-center p-4 bg-white rounded-2xl shadow-sm border border-gray-100">
+                                <div>
+                                    <h3 class="font-bold text-lg text-gray-900" data-i18n="fees_full_title">Voldag</h3>
+                                    <p class="text-sm text-gray-500">06:30 - 17:30</p>
+                                </div>
+                                <div class="text-xl font-bold text-secondary">R2750</div>
+                            </div>
+                            <div class="flex justify-between items-center p-4 bg-white rounded-2xl shadow-sm border border-gray-100">
+                                <div>
+                                    <h3 class="font-bold text-lg text-gray-900" data-i18n="fees_half_title">Halfdag</h3>
+                                    <p class="text-sm text-gray-500">06:30 - 13:00</p>
+                                </div>
+                                <div class="text-xl font-bold text-secondary">R1950</div>
+                            </div>
+                            <div class="flex justify-between items-center p-4 bg-white rounded-2xl shadow-sm border border-gray-100">
+                                <div>
+                                    <h3 class="font-bold text-lg text-gray-900" data-i18n="fees_aftercare_title">Nasorg (Laerskool kinders)</h3>
+                                    <p class="text-sm text-gray-500">13:00 - 17:30</p>
+                                </div>
+                                <div class="text-xl font-bold text-secondary">R1500</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-12 grid md:grid-cols-2 gap-8 md:gap-12">
+                        <div class="space-y-6">
+                            <h3 class="font-bold text-xl flex items-center gap-2">
+                                <i data-lucide="credit-card" class="text-secondary"></i>
+                                <span data-i18n="fees_payment_title">Betalingsmetodes</span>
+                            </h3>
+                            <ul class="space-y-4 text-gray-600">
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                                    <span data-i18n="fees_method1">Elektroniese Fondsoorplasing (EFT)</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                                    <span data-i18n="fees_method2">Kontantbetalings by die kantoor</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="space-y-6">
+                            <h3 class="font-bold text-xl flex items-center gap-2">
+                                <i data-lucide="calendar" class="text-secondary"></i>
+                                <span data-i18n="fees_terms_title">Betalingsvoorwaardes</span>
+                            </h3>
+                            <p class="text-gray-600" data-i18n="fees_terms_desc">Skoolgelde is maandeliks vooruitbetaalbaar teen die 7de van elke maand.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#dde4e8] py-12 border-t border-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-6 md:mb-0">
+                    <img src="logo.png" alt="Wippie en Snippie Logo" class="h-8 w-auto" referrerPolicy="no-referrer">
+                    <span class="font-adlam text-xl text-secondary">Wippie en Snippie</span>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    &copy; 2026 Wippie en Snippie Kleuterskool. <span data-i18n="footer_rights">Alle regte voorbehou.</span>
+                </div>
+                <div class="flex space-x-6 mt-6 md:mt-0">
+                    <a href="https://www.facebook.com/WippieEnSnippieHermanus" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-secondary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook w-6 h-6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-secondary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram w-6 h-6"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <audio id="theme-song" loop>
+        <source src="theme.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        window.pageTranslations = {
+            af: {
+                nav_home: "Tuis", nav_about: "Oor Ons", nav_staff: "Personeel", nav_classes: "Klasse", nav_extra: "Buitemuurse Aktiwiteite", nav_events: "Komende Gebeure", nav_fees: "Skoolgelde", nav_tips: "Wenke", nav_thanks: "Bedankinge", nav_contact: "Kontak Ons",
+                fees_title: "Skoolgelde", fees_subtitle: "Inligting oor fooie en betalingsopsies.",
+                fees_info_title: "Fooie Inligting", fees_full_title: "Voldag", fees_half_title: "Halfdag", fees_aftercare_title: "Nasorg (Laerskool kinders)",
+                fees_payment_title: "Betalingsmetodes", fees_method1: "Elektroniese Fondsoorplasing (EFT)", fees_method2: "Kontantbetalings by die kantoor",
+                fees_terms_title: "Betalingsvoorwaardes", fees_terms_desc: "Skoolgelde is maandeliks vooruitbetaalbaar teen die 7de van elke maand.",
+                footer_rights: "Alle regte voorbehou.", lang_btn: "English"
+            },
+            en: {
+                nav_home: "Home", nav_about: "About Us", nav_staff: "Staff", nav_classes: "Classes", nav_extra: "Extracurricular Activities", nav_events: "Upcoming Events", nav_fees: "School Fees", nav_tips: "Tips", nav_thanks: "Acknowledgements", nav_contact: "Contact Us",
+                fees_title: "School Fees", fees_subtitle: "Information about fees and payment options.",
+                fees_info_title: "Fees Information", fees_full_title: "Full Day", fees_half_title: "Half Day", fees_aftercare_title: "Aftercare (Primary School children)",
+                fees_payment_title: "Payment Methods", fees_method1: "Electronic Funds Transfer (EFT)", fees_method2: "Cash payments at the office",
+                fees_terms_title: "Payment Terms", fees_terms_desc: "School fees are payable monthly in advance by the 7th of each month.",
+                footer_rights: "All rights reserved.", lang_btn: "Afrikaans"
+            }
+        };
+    </script>
+</body>
+</html>

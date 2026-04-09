@@ -1,0 +1,95 @@
+<script>
+        // Theme Song Logic
+        const audio = document.getElementById('theme-song');
+
+        let isMuted = localStorage.getItem('themeMuted') === 'true';
+        if (audio) {
+            audio.muted = isMuted;
+
+            // Resume audio position safely
+            const savedTime = localStorage.getItem('themeTime');
+            if (savedTime) {
+                audio.addEventListener('loadedmetadata', () => {
+                    audio.currentTime = parseFloat(savedTime);
+                }, { once: true });
+                // Fallback if metadata is already loaded
+                if (audio.readyState >= 1) {
+                    audio.currentTime = parseFloat(savedTime);
+                }
+            }
+
+            // Save audio position periodically
+            setInterval(() => {
+                if (!audio.paused) {
+                    localStorage.setItem('themeTime', audio.currentTime);
+                }
+            }, 1000);
+            
+            // Attempt autoplay
+            if (!isMuted) {
+                audio.play().catch(e => console.log("Autoplay blocked by browser. Music will start on first interaction."));
+            }
+            
+            updateMuteIcons();
+        }
+
+        function toggleMute() {
+            if (!audio) return;
+            isMuted = !isMuted;
+            audio.muted = isMuted;
+            localStorage.setItem('themeMuted', isMuted);
+            
+            if (!isMuted && audio.paused) {
+                audio.play().catch(e => console.log("Playback failed:", e));
+            }
+            
+            updateMuteIcons();
+        }
+
+        function updateMuteIcons() {
+            const icon = document.getElementById('mute-icon');
+            const iconMuted = document.getElementById('mute-icon-muted');
+            const iconMobile = document.getElementById('mute-icon-mobile');
+            const iconMobileMuted = document.getElementById('mute-icon-mobile-muted');
+            
+            if (icon && iconMuted) {
+                icon.classList.toggle('hidden', isMuted);
+                iconMuted.classList.toggle('hidden', !isMuted);
+            }
+            if (iconMobile && iconMobileMuted) {
+                iconMobile.classList.toggle('hidden', isMuted);
+                iconMobileMuted.classList.toggle('hidden', !isMuted);
+            }
+        }
+
+        // Try to play on first interaction
+        document.addEventListener('click', () => {
+            if (audio && !isMuted && audio.paused) {
+                audio.play().catch(e => console.log("Autoplay prevented:", e));
+            }
+        }, { once: true });
+
+        // Initial icon update
+        updateMuteIcons();
+
+        let currentLang = localStorage.getItem('lang') || 'af';
+        function toggleLanguage() {
+            currentLang = currentLang === 'af' ? 'en' : 'af';
+            localStorage.setItem('lang', currentLang);
+            updateContent();
+        }
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+            });
+            document.getElementById('lang-text').innerText = translations[currentLang].lang_btn;
+            document.getElementById('lang-text-mobile').innerText = translations[currentLang].lang_btn;
+            document.documentElement.lang = currentLang;
+        }
+        function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+        updateContent();
+        
+        // Initialize Lucide icons after content is ready
+        lucide.createIcons();
+    

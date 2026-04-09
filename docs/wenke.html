@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ouerskap Wenke | Wippie en Snippie Kleuterskool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Quicksand:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#f9f6f8',
+                        secondary: '#e7000b',
+                        accent: '#ffcc00',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        rounded: ['Quicksand', 'sans-serif'],
+                        adlam: ['"ADLaM Display"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .nav-link:hover { color: #e7000b; }
+    </style>
+    <script src="pjax.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body class="bg-primary font-sans text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="fixed w-full z-50 bg-[#dde4e8] backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <img src="logo.png" alt="Wippie en Snippie Logo" class="h-14 w-auto" referrerPolicy="no-referrer">
+                    <div class="flex flex-col items-center">
+                        <span class="font-adlam text-2xl text-secondary leading-tight">Wippie en Snippie</span>
+                        <span class="text-[10px] font-bold text-gray-400 tracking-widest uppercase leading-none">KLEUTERSKOOL &bull; PRESCHOOL</span>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium">
+                <a href="index.html" class="nav-link transition-colors" data-i18n="nav_home">Tuis</a>
+                
+                <!-- Dropdown -->
+                <div class="relative group">
+                    <button class="nav-link transition-colors flex items-center space-x-1 py-4">
+                        <span data-i18n="nav_about">Oor Ons</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                    <div class="absolute left-0 top-full w-64 bg-white shadow-xl rounded-2xl border border-gray-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
+                        <a href="oor-ons.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_about">Oor Ons</a>
+                        <a href="personeel.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_staff">Personeel</a>
+                        <a href="klasse.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_classes">Klasse</a>
+                        <a href="buitemuurs.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_extra">Buitemuurse Aktiwiteite</a>
+                        <a href="gebeure.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_events">Komende Gebeure</a>
+                        <a href="skoolgelde.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_fees">Skoolgelde</a>
+                    </div>
+                </div>
+
+                <a href="wenke.html" class="nav-link transition-colors text-secondary" data-i18n="nav_tips">Wenke</a>
+                <a href="bedankinge.html" class="nav-link transition-colors" data-i18n="nav_thanks">Bedankinge</a>
+                <a href="kontak.html" class="nav-link transition-colors" data-i18n="nav_contact">Kontak Ons</a>
+                
+                <div class="flex items-center space-x-2">
+                    <button id="mute-btn" onclick="toggleMute()" class="flex items-center space-x-1 bg-secondary hover:opacity-90 px-3 py-1.5 rounded-full transition-colors text-sm font-bold text-white" title="Toggle Music">
+                        <i data-lucide="volume-2" id="mute-icon" class="w-4 h-4"></i>
+                        <i data-lucide="volume-x" id="mute-icon-muted" class="w-4 h-4 hidden"></i>
+                    </button>
+                    <button onclick="toggleLanguage()" class="flex items-center space-x-1.5 bg-[#eef2f6] hover:bg-[#e2e8f0] px-4 py-2 rounded-full transition-colors text-sm font-semibold text-[#334155]">
+                        <i data-lucide="globe" class="w-4 h-4"></i>
+                        <span id="lang-text">English</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center space-x-2">
+                <button id="mute-btn-mobile" onclick="toggleMute()" class="flex items-center space-x-1 bg-secondary px-3 py-1.5 rounded-full text-sm font-bold text-white">
+                    <i data-lucide="volume-2" id="mute-icon-mobile" class="w-4 h-4"></i>
+                    <i data-lucide="volume-x" id="mute-icon-mobile-muted" class="w-4 h-4 hidden"></i>
+                </button>
+                <button onclick="toggleLanguage()" class="flex items-center space-x-1.5 bg-[#eef2f6] px-4 py-2 rounded-full text-sm font-semibold text-[#334155]">
+                    <i data-lucide="globe" class="w-4 h-4"></i>
+                    <span id="lang-text-mobile">English</span>
+                </button>
+                <button class="text-gray-600" onclick="toggleMenu()">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-4 shadow-lg">
+            <a href="index.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_home">Tuis</a>
+            <div class="space-y-2">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-wider px-2" data-i18n="nav_about">Oor Ons</p>
+                <a href="oor-ons.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_about">Oor Ons</a>
+                <a href="personeel.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_staff">Personeel</a>
+                <a href="klasse.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_classes">Klasse</a>
+                <a href="buitemuurs.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_extra">Buitemuurse Aktiwiteite</a>
+                <a href="gebeure.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_events">Komende Gebeure</a>
+                <a href="skoolgelde.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_fees">Skoolgelde</a>
+            </div>
+            <a href="wenke.html" class="block font-medium text-secondary" onclick="toggleMenu()" data-i18n="nav_tips">Wenke</a>
+            <a href="bedankinge.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_thanks">Bedankinge</a>
+            <a href="kontak.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_contact">Kontak Ons</a>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="font-rounded font-bold text-4xl md:text-5xl text-gray-900 mb-4" data-i18n="tips_title">Wenke vir Ouers</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="tips_subtitle">Nuttige inligting vir u kind se ontwikkeling.</p>
+        </div>
+    </section>
+
+    <!-- Tips Content -->
+    <section class="py-16 bg-[#dde4e8]">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto grid gap-8">
+                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 flex gap-6 items-start">
+                    <div class="w-12 h-12 bg-secondary/10 text-secondary rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-xl">1</div>
+                    <div>
+                        <h3 class="font-rounded font-bold text-2xl mb-2" data-i18n="tip1_title">Roetine en Struktuur</h3>
+                        <p class="text-gray-600 text-lg" data-i18n="tip1">Roetine is belangrik vir 'n kind se veiligheidsgevoel. Dit help hulle om te weet wat om te verwag en verminder angs.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 flex gap-6 items-start">
+                    <div class="w-12 h-12 bg-accent/20 text-accent-dark rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-xl">2</div>
+                    <div>
+                        <h3 class="font-rounded font-bold text-2xl mb-2" data-i18n="tip2_title">Onafhanklikheid</h3>
+                        <p class="text-gray-600 text-lg" data-i18n="tip2">Moedig onafhanklikheid aan deur klein take self te laat doen. Dit bou selfvertroue en motoriese vaardighede.</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 flex gap-6 items-start">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center flex-shrink-0 font-bold text-xl">3</div>
+                    <div>
+                        <h3 class="font-rounded font-bold text-2xl mb-2" data-i18n="tip3_title">Taalontwikkeling</h3>
+                        <p class="text-gray-600 text-lg" data-i18n="tip3">Lees elke dag saam met u kind om taalontwikkeling te bevorder. Dit verryk hul woordeskat en verbeelding.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#dde4e8] py-12 border-t border-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-6 md:mb-0">
+                    <img src="logo.png" alt="Wippie en Snippie Logo" class="h-8 w-auto" referrerPolicy="no-referrer">
+                    <span class="font-adlam text-xl text-secondary">Wippie en Snippie</span>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    &copy; 2026 Wippie en Snippie Kleuterskool. <span data-i18n="footer_rights">Alle regte voorbehou.</span>
+                </div>
+                <div class="flex space-x-6 mt-6 md:mt-0">
+                    <a href="https://www.facebook.com/WippieEnSnippieHermanus" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-secondary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook w-6 h-6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-secondary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram w-6 h-6"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <audio id="theme-song" loop>
+        <source src="theme.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        window.pageTranslations = {
+            af: {
+                nav_home: "Tuis", nav_about: "Oor Ons", nav_staff: "Personeel", nav_classes: "Klasse", nav_extra: "Buitemuurse Aktiwiteite", nav_events: "Komende Gebeure", nav_fees: "Skoolgelde", nav_tips: "Wenke", nav_thanks: "Bedankinge", nav_contact: "Kontak Ons",
+                tips_title: "Wenke vir Ouers", tips_subtitle: "Nuttige inligting vir u kind se ontwikkeling.",
+                tip1_title: "Roetine en Struktuur", tip1: "Roetine is belangrik vir 'n kind se veiligheidsgevoel. Dit help hulle om te weet wat om te verwag en verminder angs.",
+                tip2_title: "Onafhanklikheid", tip2: "Moedig onafhanklikheid aan deur klein take self te laat doen. Dit bou selfvertroue en motoriese vaardighede.",
+                tip3_title: "Taalontwikkeling", tip3: "Lees elke dag saam met u kind om taalontwikkeling te bevorder. Dit verryk hul woordeskat en verbeelding.",
+                footer_rights: "Alle regte voorbehou.", lang_btn: "English"
+            },
+            en: {
+                nav_home: "Home", nav_about: "About Us", nav_staff: "Staff", nav_classes: "Classes", nav_extra: "Extracurricular Activities", nav_events: "Upcoming Events", nav_fees: "School Fees", nav_tips: "Tips", nav_thanks: "Acknowledgements", nav_contact: "Contact Us",
+                tips_title: "Tips for Parents", tips_subtitle: "Useful information for your child's development.",
+                tip1_title: "Routine and Structure", tip1: "Routine is important for a child's sense of security. It helps them know what to expect and reduces anxiety.",
+                tip2_title: "Independence", tip2: "Encourage independence by letting them do small tasks themselves. This builds confidence and motor skills.",
+                tip3_title: "Language Development", tip3: "Read with your child every day to promote language development. It enriches their vocabulary and imagination.",
+                footer_rights: "All rights reserved.", lang_btn: "Afrikaans"
+            }
+        };
+    </script>
+</body>
+</html>

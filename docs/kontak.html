@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak Ons | Wippie en Snippie Kleuterskool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Quicksand:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#f9f6f8',
+                        secondary: '#e7000b',
+                        accent: '#ffcc00',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        rounded: ['Quicksand', 'sans-serif'],
+                        adlam: ['"ADLaM Display"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .nav-link:hover { color: #e7000b; }
+    </style>
+    <script src="pjax.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body class="bg-primary font-sans text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="fixed w-full z-50 bg-[#dde4e8] backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <img src="logo.png" alt="Wippie en Snippie Logo" class="h-14 w-auto" referrerPolicy="no-referrer">
+                    <div class="flex flex-col items-center">
+                        <span class="font-adlam text-2xl text-secondary leading-tight">Wippie en Snippie</span>
+                        <span class="text-[10px] font-bold text-gray-400 tracking-widest uppercase leading-none">KLEUTERSKOOL &bull; PRESCHOOL</span>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium">
+                <a href="index.html" class="nav-link transition-colors" data-i18n="nav_home">Tuis</a>
+                
+                <!-- Dropdown -->
+                <div class="relative group">
+                    <button class="nav-link transition-colors flex items-center space-x-1 py-4">
+                        <span data-i18n="nav_about">Oor Ons</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                    <div class="absolute left-0 top-full w-64 bg-white shadow-xl rounded-2xl border border-gray-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
+                        <a href="oor-ons.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_about">Oor Ons</a>
+                        <a href="personeel.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_staff">Personeel</a>
+                        <a href="klasse.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_classes">Klasse</a>
+                        <a href="buitemuurs.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_extra">Buitemuurse Aktiwiteite</a>
+                        <a href="gebeure.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_events">Komende Gebeure</a>
+                        <a href="skoolgelde.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_fees">Skoolgelde</a>
+                    </div>
+                </div>
+
+                <a href="wenke.html" class="nav-link transition-colors" data-i18n="nav_tips">Wenke</a>
+                <a href="bedankinge.html" class="nav-link transition-colors" data-i18n="nav_thanks">Bedankinge</a>
+                <a href="kontak.html" class="nav-link transition-colors text-secondary" data-i18n="nav_contact">Kontak Ons</a>
+                
+                <div class="flex items-center space-x-2">
+                    <button id="mute-btn" onclick="toggleMute()" class="flex items-center space-x-1 bg-secondary hover:opacity-90 px-3 py-1.5 rounded-full transition-colors text-sm font-bold text-white" title="Toggle Music">
+                        <i data-lucide="volume-2" id="mute-icon" class="w-4 h-4"></i>
+                        <i data-lucide="volume-x" id="mute-icon-muted" class="w-4 h-4 hidden"></i>
+                    </button>
+                    <button onclick="toggleLanguage()" class="flex items-center space-x-1.5 bg-[#eef2f6] hover:bg-[#e2e8f0] px-4 py-2 rounded-full transition-colors text-sm font-semibold text-[#334155]">
+                        <i data-lucide="globe" class="w-4 h-4"></i>
+                        <span id="lang-text">English</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center space-x-2">
+                <button id="mute-btn-mobile" onclick="toggleMute()" class="flex items-center space-x-1 bg-secondary px-3 py-1.5 rounded-full text-sm font-bold text-white">
+                    <i data-lucide="volume-2" id="mute-icon-mobile" class="w-4 h-4"></i>
+                    <i data-lucide="volume-x" id="mute-icon-mobile-muted" class="w-4 h-4 hidden"></i>
+                </button>
+                <button onclick="toggleLanguage()" class="flex items-center space-x-1.5 bg-[#eef2f6] px-4 py-2 rounded-full text-sm font-semibold text-[#334155]">
+                    <i data-lucide="globe" class="w-4 h-4"></i>
+                    <span id="lang-text-mobile">English</span>
+                </button>
+                <button class="text-gray-600" onclick="toggleMenu()">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-4 shadow-lg">
+            <a href="index.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_home">Tuis</a>
+            <div class="space-y-2">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-wider px-2" data-i18n="nav_about">Oor Ons</p>
+                <a href="oor-ons.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_about">Oor Ons</a>
+                <a href="personeel.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_staff">Personeel</a>
+                <a href="klasse.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_classes">Klasse</a>
+                <a href="buitemuurs.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_extra">Buitemuurse Aktiwiteite</a>
+                <a href="gebeure.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_events">Komende Gebeure</a>
+                <a href="skoolgelde.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_fees">Skoolgelde</a>
+            </div>
+            <a href="wenke.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_tips">Wenke</a>
+            <a href="bedankinge.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_thanks">Bedankinge</a>
+            <a href="kontak.html" class="block font-medium text-secondary" onclick="toggleMenu()" data-i18n="nav_contact">Kontak Ons</a>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="font-rounded font-bold text-4xl md:text-5xl text-gray-900 mb-4" data-i18n="contact_title">Kontak Ons</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="contact_subtitle">Het u vrae of wil u 'n draai kom maak? Ons hoor graag van u!</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="py-16 bg-[#dde4e8]">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto bg-white rounded-[3rem] shadow-xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
+                <div class="md:w-1/2 p-6 md:p-12 bg-gray-900 text-white">
+                    <h2 class="font-rounded font-bold text-3xl mb-8" data-i18n="contact_info_title">Kontakbesonderhede</h2>
+                    <div class="space-y-8">
+                        <a href="tel:0283161101" class="flex items-center space-x-4 group">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center group-hover:bg-secondary transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone w-6 h-6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400" data-i18n="contact_call">Bel Ons</p>
+                                <p class="text-lg font-bold">028 316 1101</p>
+                            </div>
+                        </a>
+                        <a href="mailto:wippiesnippie12@gmail.com" class="flex items-center space-x-4 group">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center group-hover:bg-secondary transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail w-6 h-6"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400" data-i18n="contact_email">E-pos Ons</p>
+                                <p class="text-lg font-bold">wippiesnippie12@gmail.com</p>
+                            </div>
+                        </a>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin w-6 h-6"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400" data-i18n="contact_visit">Besoek Ons</p>
+                                <p class="text-lg font-bold" data-i18n="contact_address">Hoofweg Sandbaai, Hermanus, 7200</p>
+                            </div>
+                        </div>
+                        <a href="https://www.facebook.com/WippieEnSnippieHermanus" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-4 group">
+                            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center group-hover:bg-secondary transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook w-6 h-6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400" data-i18n="contact_facebook">Facebook</p>
+                                <p class="text-lg font-bold" data-i18n="contact_facebook_name">Wippie en Snippie</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 p-6 md:p-12">
+                    <form onsubmit="event.preventDefault(); alert(currentLang === 'af' ? 'Dankie! Ons sal binnekort kontak maak.' : 'Thank you! We will be in touch soon.');" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2" data-i18n="form_name">Naam</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" placeholder="U Naam" data-i18n-placeholder="form_name_placeholder">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2" data-i18n="form_email">E-pos</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" placeholder="U E-pos" data-i18n-placeholder="form_email_placeholder">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2" data-i18n="form_message">Boodskap</label>
+                            <textarea rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" placeholder="Hoe kan ons help?" data-i18n-placeholder="form_message_placeholder"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-secondary text-white font-bold py-4 rounded-xl hover:bg-red-700 transition-colors shadow-lg shadow-red-100" data-i18n="form_submit">
+                            Stuur Boodskap
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3291.5234215825612!2d19.199336275090115!3d-34.41345744747411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dce0be66f0ac80b%3A0xcf5628fe1ac01825!2sWippie%20en%20Snippie%20Kleuterskool%20Hermanus!5e0!3m2!1sen!2sza!4v1775467877892!5m2!1sen!2sza" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#dde4e8] py-12 border-t border-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-6 md:mb-0">
+                    <img src="logo.png" alt="Wippie en Snippie Logo" class="h-8 w-auto" referrerPolicy="no-referrer">
+                    <span class="font-adlam text-xl text-secondary">Wippie en Snippie</span>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    &copy; 2026 Wippie en Snippie Kleuterskool. <span data-i18n="footer_rights">Alle regte voorbehou.</span>
+                </div>
+                <div class="flex space-x-6 mt-6 md:mt-0">
+                    <a href="https://www.facebook.com/WippieEnSnippieHermanus" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-secondary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook w-6 h-6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-secondary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram w-6 h-6"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <audio id="theme-song" loop>
+        <source src="theme.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        window.pageTranslations = {
+            af: {
+                nav_home: "Tuis", nav_about: "Oor Ons", nav_staff: "Personeel", nav_classes: "Klasse", nav_extra: "Buitemuurse Aktiwiteite", nav_events: "Komende Gebeure", nav_fees: "Skoolgelde", nav_tips: "Wenke", nav_thanks: "Bedankinge", nav_contact: "Kontak Ons",
+                contact_title: "Kontak Ons", contact_subtitle: "Het u vrae of wil u 'n draai kom maak? Ons hoor graag van u!",
+                contact_info_title: "Kontakbesonderhede", contact_call: "Bel Ons", contact_email: "E-pos Ons", contact_visit: "Besoek Ons", contact_address: "Hoofweg Sandbaai, Hermanus, 7200",
+                contact_facebook: "Facebook", contact_facebook_name: "Wippie en Snippie",
+                form_name: "Naam", form_name_placeholder: "U Naam", form_email: "E-pos", form_email_placeholder: "U E-pos", form_message: "Boodskap", form_message_placeholder: "Hoe kan ons help?", form_submit: "Stuur Boodskap",
+                footer_rights: "Alle regte voorbehou.", lang_btn: "English"
+            },
+            en: {
+                nav_home: "Home", nav_about: "About Us", nav_staff: "Staff", nav_classes: "Classes", nav_extra: "Extracurricular Activities", nav_events: "Upcoming Events", nav_fees: "School Fees", nav_tips: "Tips", nav_thanks: "Acknowledgements", nav_contact: "Contact Us",
+                contact_title: "Contact Us", contact_subtitle: "Do you have questions or want to stop by? We would love to hear from you!",
+                contact_info_title: "Contact Details", contact_call: "Call Us", contact_email: "Email Us", contact_visit: "Visit Us", contact_address: "Main Road Sandbaai, Hermanus, 7200",
+                contact_facebook: "Facebook", contact_facebook_name: "Wippie and Snippie",
+                form_name: "Name", form_name_placeholder: "Your Name", form_email: "Email", form_email_placeholder: "Your Email", form_message: "Message", form_message_placeholder: "How can we help?", form_submit: "Send Message",
+                footer_rights: "All rights reserved.", lang_btn: "Afrikaans"
+            }
+        };
+    </script>
+</body>
+</html>
