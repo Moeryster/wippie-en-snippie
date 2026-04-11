@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skoolgelde | Wippie en Snippie Kleuterskool</title>
+    <title>Galery | Wippie en Snippie Kleuterskool</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Quicksand:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -53,7 +53,7 @@
                 
                 <!-- Dropdown -->
                 <div class="relative group">
-                    <button class="nav-link transition-colors flex items-center space-x-1 py-4 text-secondary">
+                    <button class="nav-link transition-colors flex items-center space-x-1 py-4">
                         <span data-i18n="nav_about">Oor Ons</span>
                         <i data-lucide="chevron-down" class="w-4 h-4"></i>
                     </button>
@@ -63,13 +63,13 @@
                         <a href="klasse.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_classes">Klasse</a>
                         <a href="buitemuurs.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_extra">Buitemuurse Aktiwiteite</a>
                         <a href="gebeure.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_events">Komende Gebeure</a>
-                        <a href="skoolgelde.html" class="block px-6 py-2 bg-primary text-secondary transition-colors" data-i18n="nav_fees">Skoolgelde</a>
+                        <a href="skoolgelde.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_fees">Skoolgelde</a>
                     </div>
                 </div>
 
                 <a href="wenke.html" class="nav-link transition-colors" data-i18n="nav_tips">Wenke</a>
                 <a href="bedankinge.html" class="nav-link transition-colors" data-i18n="nav_thanks">Bedankinge</a>
-                <a href="galery.html" class="nav-link transition-colors" data-i18n="nav_gallery">Galery</a>
+                <a href="galery.html" class="nav-link transition-colors text-secondary" data-i18n="nav_gallery">Galery</a>
                 <a href="kontak.html" class="nav-link transition-colors" data-i18n="nav_contact">Kontak Ons</a>
                 
                 <div class="flex items-center space-x-2">
@@ -110,11 +110,11 @@
                 <a href="klasse.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_classes">Klasse</a>
                 <a href="buitemuurs.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_extra">Buitemuurse Aktiwiteite</a>
                 <a href="gebeure.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_events">Komende Gebeure</a>
-                <a href="skoolgelde.html" class="block font-medium pl-4 text-secondary" onclick="toggleMenu()" data-i18n="nav_fees">Skoolgelde</a>
+                <a href="skoolgelde.html" class="block font-medium pl-4" onclick="toggleMenu()" data-i18n="nav_fees">Skoolgelde</a>
             </div>
             <a href="wenke.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_tips">Wenke</a>
             <a href="bedankinge.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_thanks">Bedankinge</a>
-            <a href="galery.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_gallery">Galery</a>
+            <a href="galery.html" class="block font-medium text-secondary" onclick="toggleMenu()" data-i18n="nav_gallery">Galery</a>
             <a href="kontak.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_contact">Kontak Ons</a>
         </div>
     </header>
@@ -122,66 +122,44 @@
     <!-- Page Header -->
     <section class="pt-24 sm:pt-32 pb-12 sm:pb-16 bg-white overflow-hidden">
         <div class="container mx-auto px-4 max-w-7xl text-center">
-            <h1 class="font-rounded font-bold text-3xl sm:text-4xl md:text-5xl bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 bg-clip-text text-transparent inline-block mb-4 text-balance" data-i18n="fees_title">Skoolgelde</h1>
-            <p class="bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 bg-clip-text text-transparent text-lg sm:text-xl max-w-2xl mx-auto font-medium" data-i18n="fees_subtitle">Inligting oor fooie en betalingsopsies.</p>
+            <h1 class="font-rounded font-bold text-3xl sm:text-4xl md:text-5xl bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 bg-clip-text text-transparent inline-block mb-4 text-balance" data-i18n="gallery_title">Ons Galery</h1>
+            <p class="bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 bg-clip-text text-transparent text-lg sm:text-xl max-w-2xl mx-auto font-medium" data-i18n="gallery_subtitle">Kyk na al die pret by Wippie en Snippie.</p>
         </div>
     </section>
 
-    <!-- Fees Content -->
+    <!-- Gallery Content -->
     <section class="py-16 bg-[#dde4e8]">
         <div class="container mx-auto px-4 max-w-7xl">
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-[3rem] shadow-xl border border-gray-100 overflow-hidden">
-                    <div class="p-6 md:p-12 bg-gray-50 border-b border-gray-100">
-                        <h2 class="font-rounded font-bold text-3xl mb-8 text-center" data-i18n="fees_info_title">Fooie Inligting</h2>
-                        <div class="max-w-2xl mx-auto space-y-4">
-                            <div class="flex justify-between items-center p-4 bg-white rounded-2xl shadow-sm border border-gray-100">
-                                <div>
-                                    <h3 class="font-bold text-lg text-gray-900" data-i18n="fees_full_title">Voldag</h3>
-                                    <p class="text-sm text-gray-500">06:30 - 17:30</p>
-                                </div>
-                                <div class="text-xl font-bold text-secondary">R2750</div>
-                            </div>
-                            <div class="flex justify-between items-center p-4 bg-white rounded-2xl shadow-sm border border-gray-100">
-                                <div>
-                                    <h3 class="font-bold text-lg text-gray-900" data-i18n="fees_half_title">Halfdag</h3>
-                                    <p class="text-sm text-gray-500">06:30 - 13:00</p>
-                                </div>
-                                <div class="text-xl font-bold text-secondary">R1950</div>
-                            </div>
-                            <div class="flex justify-between items-center p-4 bg-white rounded-2xl shadow-sm border border-gray-100">
-                                <div>
-                                    <h3 class="font-bold text-lg text-gray-900" data-i18n="fees_aftercare_title">Nasorg (Laerskool kinders)</h3>
-                                    <p class="text-sm text-gray-500">13:00 - 17:30</p>
-                                </div>
-                                <div class="text-xl font-bold text-secondary">R1500</div>
-                            </div>
-                        </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Placeholder Gallery Items -->
+                <div class="bg-white p-4 rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <div class="aspect-square overflow-hidden rounded-2xl mb-4">
+                        <img src="https://picsum.photos/seed/school1/800/800" alt="Galery Foto" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer">
                     </div>
-                    <div class="p-6 md:p-12 grid md:grid-cols-2 gap-8 md:gap-12">
-                        <div class="space-y-6">
-                            <h3 class="font-bold text-xl flex items-center gap-2">
-                                <i data-lucide="credit-card" class="text-secondary"></i>
-                                <span data-i18n="fees_payment_title">Betalingsmetodes</span>
-                            </h3>
-                            <ul class="space-y-4 text-gray-600">
-                                <li class="flex items-center gap-2">
-                                    <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
-                                    <span data-i18n="fees_method1">Elektroniese Fondsoorplasing (EFT)</span>
-                                </li>
-                                <li class="flex items-center gap-2">
-                                    <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
-                                    <span data-i18n="fees_method2">Kontantbetalings by die kantoor</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="space-y-6">
-                            <h3 class="font-bold text-xl flex items-center gap-2">
-                                <i data-lucide="calendar" class="text-secondary"></i>
-                                <span data-i18n="fees_terms_title">Betalingsvoorwaardes</span>
-                            </h3>
-                            <p class="text-gray-600" data-i18n="fees_terms_desc">Skoolgelde is maandeliks vooruitbetaalbaar teen die 7de van elke maand.</p>
-                        </div>
+                </div>
+                <div class="bg-white p-4 rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <div class="aspect-square overflow-hidden rounded-2xl mb-4">
+                        <img src="https://picsum.photos/seed/school2/800/800" alt="Galery Foto" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer">
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <div class="aspect-square overflow-hidden rounded-2xl mb-4">
+                        <img src="https://picsum.photos/seed/school3/800/800" alt="Galery Foto" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer">
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <div class="aspect-square overflow-hidden rounded-2xl mb-4">
+                        <img src="https://picsum.photos/seed/school4/800/800" alt="Galery Foto" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer">
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <div class="aspect-square overflow-hidden rounded-2xl mb-4">
+                        <img src="https://picsum.photos/seed/school5/800/800" alt="Galery Foto" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer">
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <div class="aspect-square overflow-hidden rounded-2xl mb-4">
+                        <img src="https://picsum.photos/seed/school6/800/800" alt="Galery Foto" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer">
                     </div>
                 </div>
             </div>
@@ -219,18 +197,12 @@
         window.pageTranslations = {
             af: {
                 nav_home: "Tuis", nav_about: "Oor Ons", nav_staff: "Personeel", nav_classes: "Klasse", nav_extra: "Buitemuurse Aktiwiteite", nav_events: "Komende Gebeure", nav_fees: "Skoolgelde", nav_tips: "Wenke", nav_thanks: "Bedankinge", nav_gallery: "Galery", nav_contact: "Kontak Ons",
-                fees_title: "Skoolgelde", fees_subtitle: "Inligting oor fooie en betalingsopsies.",
-                fees_info_title: "Fooie Inligting", fees_full_title: "Voldag", fees_half_title: "Halfdag", fees_aftercare_title: "Nasorg (Laerskool kinders)",
-                fees_payment_title: "Betalingsmetodes", fees_method1: "Elektroniese Fondsoorplasing (EFT)", fees_method2: "Kontantbetalings by die kantoor",
-                fees_terms_title: "Betalingsvoorwaardes", fees_terms_desc: "Skoolgelde is maandeliks vooruitbetaalbaar teen die 7de van elke maand.",
+                gallery_title: "Ons Galery", gallery_subtitle: "Kyk na al die pret by Wippie en Snippie.",
                 footer_rights: "Alle regte voorbehou.", lang_btn: "English"
             },
             en: {
                 nav_home: "Home", nav_about: "About Us", nav_staff: "Staff", nav_classes: "Classes", nav_extra: "Extracurricular Activities", nav_events: "Upcoming Events", nav_fees: "School Fees", nav_tips: "Tips", nav_thanks: "Acknowledgements", nav_gallery: "Gallery", nav_contact: "Contact Us",
-                fees_title: "School Fees", fees_subtitle: "Information about fees and payment options.",
-                fees_info_title: "Fees Information", fees_full_title: "Full Day", fees_half_title: "Half Day", fees_aftercare_title: "Aftercare (Primary School children)",
-                fees_payment_title: "Payment Methods", fees_method1: "Electronic Funds Transfer (EFT)", fees_method2: "Cash payments at the office",
-                fees_terms_title: "Payment Terms", fees_terms_desc: "School fees are payable monthly in advance by the 7th of each month.",
+                gallery_title: "Our Gallery", gallery_subtitle: "Take a look at all the fun at Wippie en Snippie.",
                 footer_rights: "All rights reserved.", lang_btn: "Afrikaans"
             }
         };

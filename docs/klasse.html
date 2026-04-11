@@ -37,12 +37,12 @@
     <!-- Header & Navigation -->
     <header class="fixed w-full z-50 bg-[#dde4e8] backdrop-blur-sm shadow-sm">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <a href="index.html" class="flex items-center space-x-3">
-                    <img src="logo.png" alt="Wippie en Snippie Logo" class="h-14 w-auto" referrerPolicy="no-referrer">
-                    <div class="flex flex-col items-center">
-                        <span class="font-adlam text-2xl text-secondary leading-tight">Wippie en Snippie</span>
-                        <span class="text-[10px] font-bold text-gray-400 tracking-widest uppercase leading-none">KLEUTERSKOOL &bull; PRESCHOOL</span>
+            <div class="flex items-center space-x-2 shrink">
+                <a href="index.html" class="flex items-center space-x-1 sm:space-x-3">
+                    <img src="logo.png" alt="Wippie en Snippie Logo" class="h-8 sm:h-14 w-auto shrink-0" referrerPolicy="no-referrer">
+                    <div class="flex flex-col items-start">
+                        <span class="font-adlam text-sm sm:text-2xl text-secondary leading-tight line-clamp-1">Wippie en Snippie</span>
+                        <span class="text-[6px] sm:text-[10px] font-bold text-gray-400 tracking-widest uppercase leading-none">KLEUTERSKOOL &bull; PRESCHOOL</span>
                     </div>
                 </a>
             </div>
@@ -69,6 +69,7 @@
 
                 <a href="wenke.html" class="nav-link transition-colors" data-i18n="nav_tips">Wenke</a>
                 <a href="bedankinge.html" class="nav-link transition-colors" data-i18n="nav_thanks">Bedankinge</a>
+                <a href="galery.html" class="nav-link transition-colors" data-i18n="nav_gallery">Galery</a>
                 <a href="kontak.html" class="nav-link transition-colors" data-i18n="nav_contact">Kontak Ons</a>
                 
                 <div class="flex items-center space-x-2">
@@ -84,23 +85,23 @@
             </nav>
 
             <!-- Mobile Menu Button -->
-            <div class="md:hidden flex items-center space-x-2">
-                <button id="mute-btn-mobile" onclick="toggleMute()" class="flex items-center space-x-1 bg-secondary px-3 py-1.5 rounded-full text-sm font-bold text-white">
+            <div class="md:hidden flex items-center space-x-1 sm:space-x-2 shrink-0">
+                <button id="mute-btn-mobile" onclick="toggleMute()" class="flex items-center justify-center bg-secondary w-8 h-8 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 rounded-full text-white">
                     <i data-lucide="volume-2" id="mute-icon-mobile" class="w-4 h-4"></i>
                     <i data-lucide="volume-x" id="mute-icon-mobile-muted" class="w-4 h-4 hidden"></i>
                 </button>
-                <button onclick="toggleLanguage()" class="flex items-center space-x-1.5 bg-[#eef2f6] px-4 py-2 rounded-full text-sm font-semibold text-[#334155]">
+                <button onclick="toggleLanguage()" class="flex items-center justify-center bg-[#eef2f6] w-8 h-8 sm:w-auto sm:h-auto sm:px-4 sm:py-2 rounded-full text-[#334155]">
                     <i data-lucide="globe" class="w-4 h-4"></i>
-                    <span id="lang-text-mobile">English</span>
+                    <span id="lang-text-mobile" class="hidden sm:inline ml-1.5 text-sm font-semibold">English</span>
                 </button>
-                <button class="text-gray-600" onclick="toggleMenu()">
-                    <i data-lucide="menu"></i>
+                <button class="text-gray-600 p-1" onclick="toggleMenu()">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Nav -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-4 shadow-lg">
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-4 shadow-lg max-h-[calc(100vh-80px)] overflow-y-auto">
             <a href="index.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_home">Tuis</a>
             <div class="space-y-2">
                 <p class="text-xs font-bold text-gray-400 uppercase tracking-wider px-2" data-i18n="nav_about">Oor Ons</p>
@@ -113,30 +114,31 @@
             </div>
             <a href="wenke.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_tips">Wenke</a>
             <a href="bedankinge.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_thanks">Bedankinge</a>
+            <a href="galery.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_gallery">Galery</a>
             <a href="kontak.html" class="block font-medium" onclick="toggleMenu()" data-i18n="nav_contact">Kontak Ons</a>
         </div>
     </header>
 
     <!-- Page Header -->
-    <section class="pt-32 pb-16 bg-white">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="font-rounded font-bold text-4xl md:text-5xl bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 bg-clip-text text-transparent inline-block mb-4" data-i18n="classes_title">Ons Klasse</h1>
-            <p class="bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 bg-clip-text text-transparent text-xl max-w-2xl mx-auto font-medium" data-i18n="classes_subtitle">Groepe aangepas vir elke ouderdom en stadium.</p>
+    <section class="pt-24 sm:pt-32 pb-12 sm:pb-16 bg-white overflow-hidden">
+        <div class="container mx-auto px-4 max-w-7xl text-center">
+            <h1 class="font-rounded font-bold text-3xl sm:text-4xl md:text-5xl bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 bg-clip-text text-transparent inline-block mb-4 text-balance" data-i18n="classes_title">Ons Klasse</h1>
+            <p class="bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 bg-clip-text text-transparent text-lg sm:text-xl max-w-2xl mx-auto font-medium" data-i18n="classes_subtitle">Groepe aangepas vir elke ouderdom en stadium.</p>
         </div>
     </section>
 
     <!-- Classes Content -->
     <section class="py-16 bg-[#dde4e8]">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                 <!-- Class 1 -->
                 <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-accent">
                     <div class="w-16 h-16 bg-secondary/10 text-secondary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:animate-bounce transition-transform">
                         <i data-lucide="baby"></i>
                     </div>
                     <h3 class="font-rounded font-bold text-xl mb-2" data-i18n="class1_title">Beertjies</h3>
-                    <p class="text-gray-500 text-sm mb-4" data-i18n="class1_age">2 maande - 24 maande</p>
-                    <p class="text-gray-600" data-i18n="class1_desc">Liefdevolle sorg en sensoriese stimulasie.</p>
+                    <p class="text-gray-500 text-sm mb-1" data-i18n="class1_age">2 maande - 24 maande</p>
+                    <p class="text-gray-600 text-center" data-i18n="class1_desc">• Nicoline van der Westhuizen<br>• Kelly Matinka</p>
                 </div>
                 <!-- Class 2 -->
                 <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-accent">
@@ -144,8 +146,8 @@
                         <i data-lucide="smile"></i>
                     </div>
                     <h3 class="font-rounded font-bold text-xl mb-2" data-i18n="class2_title">Mickey Muis</h3>
-                    <p class="text-gray-500 text-sm mb-4" data-i18n="class2_age">2 jaar</p>
-                    <p class="text-gray-600" data-i18n="class2_desc">Ontdekking deur speel en sosiale interaksie.</p>
+                    <p class="text-gray-500 text-sm mb-1" data-i18n="class2_age">2 jaar - 3 jaar</p>
+                    <p class="text-gray-600 text-center" data-i18n="class2_desc">• Anja Gildenhuys<br>• Chamori Kruger</p>
                 </div>
                 <!-- Class 3 -->
                 <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-accent">
@@ -153,17 +155,17 @@
                         <i data-lucide="palette"></i>
                     </div>
                     <h3 class="font-rounded font-bold text-xl mb-2" data-i18n="class3_title">Pooh Beer</h3>
-                    <p class="text-gray-500 text-sm mb-4" data-i18n="class3_age">3 jaar - 4 jaar</p>
-                    <p class="text-gray-600" data-i18n="class3_desc">Kreatiewe leer en basiese vaardighede.</p>
+                    <p class="text-gray-500 text-sm mb-1" data-i18n="class3_age">3 jaar - 4 jaar / GR. RRR</p>
+                    <p class="text-gray-600 text-center" data-i18n="class3_desc">• Coreen Albertyn<br>• Elvina Prins</p>
                 </div>
                 <!-- Class 4 -->
                 <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-accent">
                     <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:animate-bounce transition-transform">
                         <i data-lucide="graduation-cap"></i>
                     </div>
-                    <h3 class="font-rounded font-bold text-xl mb-2" data-i18n="class4_title">Bambie</h3>
-                    <p class="text-gray-500 text-sm mb-4" data-i18n="class4_age">5 jaar</p>
-                    <p class="text-gray-600" data-i18n="class4_desc">Voorbereiding vir skoolgereedheid.</p>
+                    <h3 class="font-rounded font-bold text-xl mb-2" data-i18n="class4_title">Uiltjies</h3>
+                    <p class="text-gray-500 text-sm mb-1" data-i18n="class4_age">4 jaar - 5 jaar / Gr. RR</p>
+                    <p class="text-gray-600 text-center" data-i18n="class4_desc">• Kehra Albertyn<br>• Kaitlyn Smit</p>
                 </div>
                 <!-- Class 5 -->
                 <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-accent">
@@ -171,8 +173,8 @@
                         <i data-lucide="graduation-cap"></i>
                     </div>
                     <h3 class="font-rounded font-bold text-xl mb-2" data-i18n="class5_title">Barnyard</h3>
-                    <p class="text-gray-500 text-sm mb-4" data-i18n="class5_age">Graad R</p>
-                    <p class="text-gray-600" data-i18n="class5_desc">Voorbereiding vir skoolgereedheid.</p>
+                    <p class="text-gray-500 text-sm mb-1" data-i18n="class5_age">5 jaar - 6 jaar / Gr. R</p>
+                    <p class="text-gray-600 text-center" data-i18n="class5_desc">• Charla-Sheree van der Merwe<br>• Andrie Klem</p>
                 </div>
                 <!-- Class 6 -->
                 <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-gray-100 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group hover:border-accent">
@@ -188,7 +190,7 @@
 
     <!-- Footer -->
     <footer class="bg-[#dde4e8] py-12 border-t border-gray-100">
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 max-w-7xl">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center space-x-2 mb-6 md:mb-0">
                     <img src="logo.png" alt="Wippie en Snippie Logo" class="h-8 w-auto" referrerPolicy="no-referrer">
@@ -216,25 +218,25 @@
     <script>
         window.pageTranslations = {
             af: {
-                nav_home: "Tuis", nav_about: "Oor Ons", nav_staff: "Personeel", nav_classes: "Klasse", nav_extra: "Buitemuurse Aktiwiteite", nav_events: "Komende Gebeure", nav_fees: "Skoolgelde", nav_tips: "Wenke", nav_thanks: "Bedankinge", nav_contact: "Kontak Ons",
+                nav_home: "Tuis", nav_about: "Oor Ons", nav_staff: "Personeel", nav_classes: "Klasse", nav_extra: "Buitemuurse Aktiwiteite", nav_events: "Komende Gebeure", nav_fees: "Skoolgelde", nav_tips: "Wenke", nav_thanks: "Bedankinge", nav_gallery: "Galery", nav_contact: "Kontak Ons",
                 classes_title: "Ons Klasse", classes_subtitle: "Groepe aangepas vir elke ouderdom en stadium.",
-                class1_title: "Beertjies", class1_age: "2 maande - 24 maande", class1_desc: "Liefdevolle sorg en sensoriese stimulasie.",
-                class2_title: "Mickey Muis", class2_age: "2 jaar", class2_desc: "Ontdekking deur speel en sosiale interaksie.",
-                class3_title: "Pooh Beer", class3_age: "3 jaar - 4 jaar", class3_desc: "Kreatiewe leer en basiese vaardighede.",
-                class4_title: "Bambie", class4_age: "5 jaar", class4_desc: "Voorbereiding vir skoolgereedheid.",
-                class5_title: "Barnyard", class5_age: "Graad R", class5_desc: "Voorbereiding vir skoolgereedheid.",
-                class6_title: "Nasorg", class6_desc: "Nasorg vir kleuters tot en met graad 7.",
+                class1_title: "Beertjies", class1_age: "2 maande - 24 maande", class1_desc: "• Nicoline van der Westhuizen<br>• Kelly Matinka",
+                class2_title: "Mickey Muis", class2_age: "2 jaar - 3 jaar", class2_desc: "• Anja Gildenhuys<br>• Chamori Kruger",
+                class3_title: "Pooh Beer", class3_age: "3 jaar - 4 jaar / GR. RRR", class3_desc: "• Coreen Albertyn<br>• Elvina Prins",
+                class4_title: "Uiltjies", class4_age: "4 jaar - 5 jaar / Gr. RR", class4_desc: "• Kehra Albertyn<br>• Kaitlyn Smit",
+                class5_title: "Barnyard", class5_age: "5 jaar - 6 jaar / Gr. R", class5_desc: "• Charla-Sheree van der Merwe<br>• Andrie Klem",
+                class6_title: "Nasorg", class6_desc: "Nasorg vir kleuters tot en met Gr. 7.",
                 footer_rights: "Alle regte voorbehou.", lang_btn: "English"
             },
             en: {
-                nav_home: "Home", nav_about: "About Us", nav_staff: "Staff", nav_classes: "Classes", nav_extra: "Extracurricular Activities", nav_events: "Upcoming Events", nav_fees: "School Fees", nav_tips: "Tips", nav_thanks: "Acknowledgements", nav_contact: "Contact Us",
+                nav_home: "Home", nav_about: "About Us", nav_staff: "Staff", nav_classes: "Classes", nav_extra: "Extracurricular Activities", nav_events: "Upcoming Events", nav_fees: "School Fees", nav_tips: "Tips", nav_thanks: "Acknowledgements", nav_gallery: "Gallery", nav_contact: "Contact Us",
                 classes_title: "Our Classes", classes_subtitle: "Groups tailored for every age and stage.",
-                class1_title: "Beertjies", class1_age: "2 months - 24 months", class1_desc: "Loving care and sensory stimulation.",
-                class2_title: "Mickey Mouse", class2_age: "2 years", class2_desc: "Discovery through play and social interaction.",
-                class3_title: "Pooh Bear", class3_age: "3 years - 4 years", class3_desc: "Creative learning and basic skills.",
-                class4_title: "Bambie", class4_age: "5 years", class4_desc: "Preparation for school readiness.",
-                class5_title: "Barnyard", class5_age: "Grade R", class5_desc: "Preparation for school readiness.",
-                class6_title: "Aftercare", class6_desc: "Aftercare for toddlers up to grade 7.",
+                class1_title: "Beertjies", class1_age: "2 months - 24 months", class1_desc: "• Nicoline van der Westhuizen<br>• Kelly Matinka",
+                class2_title: "Mickey Mouse", class2_age: "2 years - 3 years", class2_desc: "• Anja Gildenhuys<br>• Chamori Kruger",
+                class3_title: "Pooh Bear", class3_age: "3 years - 4 years / GR. RRR", class3_desc: "• Coreen Albertyn<br>• Elvina Prins",
+                class4_title: "Uiltjies", class4_age: "4 years - 5 years / Gr. RR", class4_desc: "• Kehra Albertyn<br>• Kaitlyn Smit",
+                class5_title: "Barnyard", class5_age: "5 years - 6 years / Gr. R", class5_desc: "• Charla-Sheree van der Merwe<br>• Andrie Klem",
+                class6_title: "Aftercare", class6_desc: "Aftercare for toddlers up to Gr. 7.",
                 footer_rights: "All rights reserved.", lang_btn: "Afrikaans"
             }
         };

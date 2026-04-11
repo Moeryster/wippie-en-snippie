@@ -113,8 +113,37 @@ window.updateContent = function() {
 // Mobile menu toggle
 window.toggleMenu = function() {
     const menu = document.getElementById('mobile-menu');
-    if (menu) menu.classList.toggle('hidden');
+    if (menu) {
+        menu.classList.toggle('hidden');
+        // Prevent body scroll when menu is open
+        if (!menu.classList.contains('hidden')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
 };
+
+// Close menu on resize if moving to desktop
+window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+        const menu = document.getElementById('mobile-menu');
+        if (menu && !menu.classList.contains('hidden')) {
+            menu.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+    }
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    const menu = document.getElementById('mobile-menu');
+    const menuBtn = e.target.closest('button[onclick="toggleMenu()"]');
+    if (menu && !menu.classList.contains('hidden') && !menu.contains(e.target) && !menuBtn) {
+        menu.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+});
 
 // Initialize content
 document.addEventListener('DOMContentLoaded', () => {
