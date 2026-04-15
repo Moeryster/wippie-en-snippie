@@ -48,31 +48,33 @@
             </div>
             
             <!-- Desktop Nav -->
-            <nav class="hidden md:flex items-center md:space-x-4 lg:space-x-8 font-medium text-sm lg:text-base">
-                <a href="index.html" class="nav-link transition-colors" data-i18n="nav_home">Tuis</a>
-                
-                <!-- Dropdown -->
-                <div class="relative group">
-                    <button class="nav-link transition-colors flex items-center space-x-1 py-4 text-secondary">
-                        <span data-i18n="nav_about">Oor Ons</span>
-                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
-                    </button>
-                    <div class="absolute left-0 top-full w-64 bg-white shadow-xl rounded-2xl border border-gray-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
-                        <a href="oor-ons.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_about">Oor Ons</a>
-                        <a href="personeel.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_staff">Personeel</a>
-                        <a href="klasse.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_classes">Klasse</a>
-                        <a href="buitemuurs.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_extra">Buitemuurse Aktiwiteite</a>
-                        <a href="gebeure.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_events">Komende Gebeure</a>
-                        <a href="skoolgelde.html" class="block px-6 py-2 bg-primary text-secondary transition-colors" data-i18n="nav_fees">Skoolgelde</a>
+            <nav class="hidden md:flex md:flex-col lg:flex-row items-center md:space-y-2 lg:space-y-0 lg:space-x-8 font-medium text-sm lg:text-base">
+                <div class="flex items-center md:space-x-4 lg:space-x-8">
+                    <a href="index.html" class="nav-link transition-colors" data-i18n="nav_home">Tuis</a>
+                    
+                    <!-- Dropdown -->
+                    <div class="relative group">
+                        <button class="nav-link transition-colors flex items-center space-x-1 py-4 text-secondary">
+                            <span data-i18n="nav_about">Oor Ons</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </button>
+                        <div class="absolute left-0 top-full w-64 bg-white shadow-xl rounded-2xl border border-gray-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
+                            <a href="oor-ons.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_about">Oor Ons</a>
+                            <a href="personeel.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_staff">Personeel</a>
+                            <a href="klasse.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_classes">Klasse</a>
+                            <a href="buitemuurs.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_extra">Buitemuurse Aktiwiteite</a>
+                            <a href="gebeure.html" class="block px-6 py-2 hover:bg-primary hover:text-secondary transition-colors" data-i18n="nav_events">Komende Gebeure</a>
+                            <a href="skoolgelde.html" class="block px-6 py-2 bg-primary text-secondary transition-colors" data-i18n="nav_fees">Skoolgelde</a>
+                        </div>
                     </div>
-                </div>
 
-                <a href="wenke.html" class="nav-link transition-colors" data-i18n="nav_tips">Wenke</a>
-                <a href="bedankinge.html" class="nav-link transition-colors" data-i18n="nav_thanks">Bedankinge</a>
-                <a href="galery.html" class="nav-link transition-colors" data-i18n="nav_gallery">Galery</a>
-                <a href="kontak.html" class="nav-link transition-colors" data-i18n="nav_contact">Kontak Ons</a>
+                    <a href="wenke.html" class="nav-link transition-colors" data-i18n="nav_tips">Wenke</a>
+                    <a href="bedankinge.html" class="nav-link transition-colors" data-i18n="nav_thanks">Bedankinge</a>
+                    <a href="galery.html" class="nav-link transition-colors" data-i18n="nav_gallery">Galery</a>
+                    <a href="kontak.html" class="nav-link transition-colors" data-i18n="nav_contact">Kontak Ons</a>
+                </div>
                 
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 md:pb-2 lg:pb-0">
                     <button id="mute-btn" onclick="toggleMute()" class="flex items-center space-x-1 bg-secondary hover:opacity-90 px-3 py-1.5 rounded-full transition-colors text-sm font-bold text-white" title="Toggle Music">
                         <i data-lucide="volume-2" id="mute-icon" class="w-4 h-4"></i>
                         <i data-lucide="volume-x" id="mute-icon-muted" class="w-4 h-4 hidden"></i>
